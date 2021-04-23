@@ -1,6 +1,6 @@
 # Locoy Publish
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/vendor/locoy-publish.svg)](https://packagist.org/packages/vendor/locoy-publish)
+![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/maxzhang/locoy-publish.svg)](https://packagist.org/packages/maxzhang/locoy-publish)
 
 A [Flarum](http://flarum.org) extension. publish
 
