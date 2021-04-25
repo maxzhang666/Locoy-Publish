@@ -37,7 +37,7 @@ class LocoyController implements RequestHandlerInterface
     public function handle(Request $request): ResponseInterface
     {
 
-        $data      = $request->getParsedBody();
+        $data = $request->getParsedBody();
 
         $ipAddress = $request->getAttribute('ipAddress');
 
@@ -47,7 +47,10 @@ class LocoyController implements RequestHandlerInterface
             return $this->error('爬:' . $pwd);
         }
 
-        $tags    = [];
+        $tags = array_key_exists('tag', $data) ? $data['tag'] : 3;
+        if (!isset($tags)) {
+            $tags = 3;
+        }
         $auth_id = 1;
 
         $title   = $data['title'];
@@ -68,7 +71,7 @@ class LocoyController implements RequestHandlerInterface
                         'data' => [
                             [
                                 'type' => 'tags',
-                                'id'   => 3
+                                'id'   => $tags
                             ]
                         ]
                     ]
