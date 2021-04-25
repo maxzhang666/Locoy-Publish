@@ -82,6 +82,6 @@ class LocoyController implements RequestHandlerInterface
         $this->bus->dispatch(
             new StartDiscussion($actor, Arr::get($dis, 'data', []), $ipAddress)
         );
-        return $this->success($pwd);
+        return $this->success($pwd.' ok');
     }
 }
