@@ -25,8 +25,8 @@ return [
 
     //添加api接口
     (new Extend\Routes('api'))
-        ->get('/locoy', 'locoy_publish.home', Controller\LocoyController::class)
-        ->post('/locoy', 'locoy_publish.home', Controller\LocoyController::class)
+        ->get('/locoy', 'locoy_publish_get.home', Controller\LocoyController::class)
+        ->post('/locoy', 'locoy_publish_post.home', Controller\LocoyController::class)
         ->post('/locoy/tags', 'locoy_publish.tags', Controller\TagsController::class)
     ,
     //在api接口忽略csrf校验
