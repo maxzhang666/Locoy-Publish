@@ -46,7 +46,8 @@ class LocoyController implements RequestHandlerInterface
             $exitsTags    = [];
             $notExitsTags = [];
             foreach ($strTags as $tag) {
-                $t = $tags->where('name', $tag)->first();
+                $tag = trim($tag);
+                $t   = $tags->where('name', $tag)->first();
                 if ($t) {
                     $exitsTags[] = $t->id;
                 } else {
@@ -65,6 +66,9 @@ class LocoyController implements RequestHandlerInterface
                 $tag = trim($tag);
 
                 $slug = (new Pinyin())->abbr($tag);
+                if (empty($slug)) {
+                    $slug = $tag;
+                }
                 if ($tags->where('slug', $slug)->first()) {
                     $slug .= '-' . time();
                 }
