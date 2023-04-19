@@ -68,37 +68,27 @@ class LocoyController implements RequestHandlerInterface
                 if ($tags->where('slug', $slug)->first()) {
                     $slug .= '-' . time();
                 }
-                $saveTag = \Flarum\Tags\Tag::build(
-                    $tag,
-                    $slug,
-                    $tag,
-                    '#000000',
-                    'fas fa-hashtag',
-                    false
-                );
-//                $data = [
-//                    'data' => [
-//                        'type'       => 'tags',
-//                        'attributes' => [
-//                            'name'        => $tag,
-//                            'description' => $tag,
-//                            'color'       => '#000000',
-//                            'icon'        => 'fas fa-hashtag',
-//                            'slug'        => $slug,
-//                            'isHidden'    => false,
-//                            'primary'     => false
-//                        ]
-//                    ]
-//                ];
+                $data = [
+                    'data' => [
+                        'type'       => 'tags',
+                        'attributes' => [
+                            'name'        => $tag,
+                            'description' => $tag,
+                            'color'       => '#000000',
+                            'icon'        => 'fas fa-hashtag',
+                            'slug'        => $slug,
+                            'isHidden'    => false,
+                            'primary'     => false
+                        ]
+                    ]
+                ];
                 $this->bus->dispatch(
-                    new \Flarum\Tags\Event\Creating($saveTag, $this->actor, [])
-//                    new \Flarum\Tags\Command\CreateTag($this->actor, Arr::get($data, 'data', []))
+                    new \Flarum\Tags\Command\CreateTag($this->actor, Arr::get($data, 'data', []))
                 );
-                $saveTag->save();
-//                $t = \Flarum\Tags\Tag::all()->where('name', $tag)->first();
-//                if ($t) {
-                $exitsTags[] = $t->id;
-//                }
+                $t = \Flarum\Tags\Tag::all()->where('name', $tag)->first();
+                if ($t) {
+                    $exitsTags[] = $t->id;
+                }
             }
             #endregion
 
