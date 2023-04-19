@@ -8,13 +8,13 @@ use Flarum\Discussion\Command\StartDiscussion;
 use Flarum\User\UserRepository;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
-
-//use Illuminate\Support\Facades\Log;
 use Laminas\Diactoros\Response\JsonResponse;
 use Overtrue\Pinyin\Pinyin;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface;
+
+//use Illuminate\Support\Facades\Log;
 
 class LocoyController implements RequestHandlerInterface
 {
@@ -68,27 +68,37 @@ class LocoyController implements RequestHandlerInterface
                 if ($tags->where('slug', $slug)->first()) {
                     $slug .= '-' . time();
                 }
-                $data = [
-                    'data' => [
-                        'type'       => 'tags',
-                        'attributes' => [
-                            'name'        => $tag,
-                            'description' => $tag,
-                            'color'       => '#000000',
-                            'icon'        => 'fas fa-hashtag',
-                            'slug'        => $slug,
-                            'isHidden'    => false,
-                            'primary'     => false
-                        ]
-                    ]
-                ];
-                $this->bus->dispatch(
-                    new \Flarum\Tags\Command\CreateTag($this->actor, Arr::get($data, 'data', []))
+                $saveTag = \Flarum\Tags\Tag::build(
+                    $tag,
+                    $slug,
+                    $tag,
+                    '#000000',
+                    'fas fa-hashtag',
+                    false
                 );
-                $t = \Flarum\Tags\Tag::all()->where('name', $tag)->first();
-                if ($t) {
-                    $exitsTags[] = $t->id;
-                }
+//                $data = [
+//                    'data' => [
+//                        'type'       => 'tags',
+//                        'attributes' => [
+//                            'name'        => $tag,
+//                            'description' => $tag,
+//                            'color'       => '#000000',
+//                            'icon'        => 'fas fa-hashtag',
+//                            'slug'        => $slug,
+//                            'isHidden'    => false,
+//                            'primary'     => false
+//                        ]
+//                    ]
+//                ];
+                $this->bus->dispatch(
+                    new \Flarum\Tags\Event\Saving($saveTag, $this->actor, [])
+//                    new \Flarum\Tags\Command\CreateTag($this->actor, Arr::get($data, 'data', []))
+                );
+                $saveTag->save();
+//                $t = \Flarum\Tags\Tag::all()->where('name', $tag)->first();
+//                if ($t) {
+                $exitsTags[] = $t->id;
+//                }
             }
             #endregion
 
