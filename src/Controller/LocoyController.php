@@ -123,7 +123,10 @@ class LocoyController implements RequestHandlerInterface
             $tags = 3;
         }
 
-        $tagsArr = [];
+        $tagsArr = [
+            'type' => 'tags',
+            'id'   => $tags
+        ];
         $title   = $data['title'];
         $content = $data['content'];
 
@@ -132,14 +135,18 @@ class LocoyController implements RequestHandlerInterface
         $tagsStr = $data['tags'];
 
         if (isset($tagsStr) && $tagsStr != '') {
-            //try {
-            $tagsArr = $this->getTags($tagsStr);
-            //} catch (\Exception $e) {
-            //Log::error('自动化创建此标签失败', [$e->getMessage()]);
-            //}
-        }
+            try {
+                $autoTags = $this->getTags($tagsStr);
+                if (count($autoTags) > 0) {
+                    $tagsArr[] = [
+                        'type' => 'tags',
+                        'id'   => $autoTags
+                    ];
+                }
+            } catch (\Exception $e) {
 
-        $tagsArr[] = (int)$tags;
+            }
+        }
 
         $dis = [
             'data' => [
@@ -150,12 +157,13 @@ class LocoyController implements RequestHandlerInterface
                 ],
                 'relationships' => [
                     'tags' => [
-                        'data' => [
-                            [
-                                'type' => 'tags',
-                                'id'   => $tagsArr
-                            ]
-                        ]
+                        'data' => $tagsArr
+                        //[
+                        //    [
+                        //        'type' => 'tags',
+                        //        'id'   => $tagsArr
+                        //    ]
+                        //]
                     ]
                 ]
             ]
