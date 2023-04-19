@@ -58,6 +58,10 @@ class LocoyController implements RequestHandlerInterface
             //创建不存在的tag
             foreach ($notExitsTags as $tag) {
 
+                if (empty($tag)) {
+                    continue;
+                }
+
                 $slug = (new Pinyin())->permalink($tag);
                 if ($tags->where('slug', $slug)->first()) {
                     $slug .= '-' . time();
