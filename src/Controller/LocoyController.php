@@ -138,10 +138,12 @@ class LocoyController implements RequestHandlerInterface
             try {
                 $autoTags = $this->getTags($tagsStr);
                 if (count($autoTags) > 0) {
-                    $tagsArr[] = [
-                        'type' => 'tags',
-                        'id'   => $autoTags
-                    ];
+                    foreach ($autoTags as $autoTag) {
+                        $tagsArr[] = [
+                            'type' => 'tags',
+                            'id'   => $autoTag
+                        ];
+                    }
                 }
             } catch (\Exception $e) {
 
