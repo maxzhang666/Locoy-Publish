@@ -1,31 +1,32 @@
 {
-  "name": "maxzhang/locoy-publish",
-  "description": "publish",
-  "keywords": [
-    "flarum"
-  ],
-  "type": "flarum-extension",
-  "license": "MIT",
-  "require": {
-    "flarum/core": "~1.1"
-  },
-  "authors": [],
-  "autoload": {
-    "psr-4": {
-      "MaxZhang\\LocoyPublish\\": "src/"
-    }
-  },
-  "extra": {
-    "flarum-extension": {
-      "title": "Locoy Publish",
-      "icon": {
-        "name": "",
-        "backgroundColor": "",
-        "color": ""
-      }
+    "name": "maxzhang/locoy-publish",
+    "description": "publish",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "require": {
+        "flarum/core": "~1.1",
+        "overtrue/pinyin": "^4.0"
     },
-    "flagrow": {
-      "discuss": ""
+    "authors": [],
+    "autoload": {
+        "psr-4": {
+            "MaxZhang\\LocoyPublish\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Locoy Publish",
+            "icon": {
+                "name": "",
+                "backgroundColor": "",
+                "color": ""
+            }
+        },
+        "flagrow": {
+            "discuss": ""
+        }
     }
-  }
 }
