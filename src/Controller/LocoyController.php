@@ -8,7 +8,8 @@ use Flarum\Discussion\Command\StartDiscussion;
 use Flarum\User\UserRepository;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
+
+//use Illuminate\Support\Facades\Log;
 use Laminas\Diactoros\Response\JsonResponse;
 use Overtrue\Pinyin\Pinyin;
 use Psr\Http\Message\ResponseInterface;
@@ -125,7 +126,7 @@ class LocoyController implements RequestHandlerInterface
 
                 $tagsArr = $this->getTags($tagsStr);
             } catch (\Exception $e) {
-                Log::error('自动化创建此标签失败', [$e->getMessage()]);
+                //Log::error('自动化创建此标签失败', [$e->getMessage()]);
             }
         }
 
