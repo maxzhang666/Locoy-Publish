@@ -91,7 +91,7 @@ class LocoyController implements RequestHandlerInterface
 //                    ]
 //                ];
                 $this->bus->dispatch(
-                    new \Flarum\Tags\Event\Saving($saveTag, $this->actor, [])
+                    new \Flarum\Tags\Event\Creating($saveTag, $this->actor, [])
 //                    new \Flarum\Tags\Command\CreateTag($this->actor, Arr::get($data, 'data', []))
                 );
                 $saveTag->save();
