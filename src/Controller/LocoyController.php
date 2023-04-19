@@ -74,8 +74,8 @@ class LocoyController implements RequestHandlerInterface
                         'attributes' => [
                             'name'        => $tag,
                             'description' => $tag,
-                            'color'       => '#000000',
-                            'icon'        => 'fas fa-hashtag',
+                            'color'       => '#c28cee',
+                            'icon'        => 'fas fa-tags',
                             'slug'        => $slug,
                             'isHidden'    => false,
                             'primary'     => false
