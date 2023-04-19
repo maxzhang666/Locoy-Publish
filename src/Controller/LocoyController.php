@@ -40,9 +40,9 @@ class LocoyController implements RequestHandlerInterface
 
     private function getTags($tagsStr)
     {
-        $strTags = explode($tagsStr, ',');
+        $strTags = explode(',', $tagsStr);
         if (class_exists('Flarum\Tags\Tag')) {
-            $tags      = \Flarum\Tags\Tag::all();
+            $tags         = \Flarum\Tags\Tag::all();
             $exitsTags    = [];
             $notExitsTags = [];
             foreach ($strTags as $tag) {
@@ -61,6 +61,8 @@ class LocoyController implements RequestHandlerInterface
                 if (empty($tag)) {
                     continue;
                 }
+
+                $tag = trim($tag);
 
                 $slug = (new Pinyin())->abbr($tag);
                 if ($tags->where('slug', $slug)->first()) {
