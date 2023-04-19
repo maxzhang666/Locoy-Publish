@@ -123,12 +123,12 @@ class LocoyController implements RequestHandlerInterface
             $tags = 3;
         }
 
-        $tagsArr = [
+        $tagsArr[] = [
             'type' => 'tags',
             'id'   => $tags
         ];
-        $title   = $data['title'];
-        $content = $data['content'];
+        $title     = $data['title'];
+        $content   = $data['content'];
 
         $this->actor = $this->user->findOrFail($this->authId);
 
