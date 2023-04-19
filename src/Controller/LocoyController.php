@@ -122,12 +122,11 @@ class LocoyController implements RequestHandlerInterface
         $tagsStr = $data['tags'];
 
         if (isset($tagsStr) && $tagsStr != '') {
-            try {
-
-                $tagsArr = $this->getTags($tagsStr);
-            } catch (\Exception $e) {
-                //Log::error('自动化创建此标签失败', [$e->getMessage()]);
-            }
+            //try {
+            $tagsArr = $this->getTags($tagsStr);
+            //} catch (\Exception $e) {
+            //Log::error('自动化创建此标签失败', [$e->getMessage()]);
+            //}
         }
 
         $tagsArr[] = $tags;
