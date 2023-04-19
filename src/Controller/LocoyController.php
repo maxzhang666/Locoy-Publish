@@ -85,7 +85,7 @@ class LocoyController implements RequestHandlerInterface
                 $this->bus->dispatch(
                     new \Flarum\Tags\Command\CreateTag($this->actor, Arr::get($data, 'data', []))
                 );
-                $t = $tags->where('name', $tag)->first();
+                $t = \Flarum\Tags\Tag::all()->where('name', $tag)->first();
                 if ($t) {
                     $exitsTags[] = $t->id;
                 }
