@@ -139,7 +139,7 @@ class LocoyController implements RequestHandlerInterface
             //}
         }
 
-        $tagsArr[] = $tags;
+        $tagsArr[] = (int)$tags;
 
         $dis = [
             'data' => [
