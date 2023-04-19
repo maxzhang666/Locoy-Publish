@@ -62,7 +62,7 @@ class LocoyController implements RequestHandlerInterface
                     continue;
                 }
 
-                $slug = (new Pinyin())->permalink($tag);
+                $slug = (new Pinyin())->abbr($tag);
                 if ($tags->where('slug', $slug)->first()) {
                     $slug .= '-' . time();
                 }
