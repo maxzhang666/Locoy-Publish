@@ -38,11 +38,11 @@ class LocoyController implements RequestHandlerInterface
     }
 
 
-    private function getTags($tags)
+    private function getTags($tagsStr)
     {
-        $strTags = explode($tags, ',');
+        $strTags = explode($tagsStr, ',');
         if (class_exists('Flarum\Tags\Tag')) {
-            $tags         = \Flarum\Tags\Tag::all();
+            $tags      = \Flarum\Tags\Tag::all();
             $exitsTags    = [];
             $notExitsTags = [];
             foreach ($strTags as $tag) {
