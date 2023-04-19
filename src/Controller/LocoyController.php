@@ -78,7 +78,8 @@ class LocoyController implements RequestHandlerInterface
                         'attributes' => [
                             'name'        => $tag,
                             'description' => $tag,
-                            'color'       => '#' . substr(md5($tag), 0, 6),
+                            # 随机颜色
+                            'color'       => '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT),
                             'icon'        => 'fas fa-tags',
                             'slug'        => $slug,
                             'isHidden'    => false,
