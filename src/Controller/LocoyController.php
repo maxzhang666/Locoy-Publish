@@ -62,6 +62,9 @@ class LocoyController implements RequestHandlerInterface
                 if (empty($tag)) {
                     continue;
                 }
+                if (mb_strlen($tag) > 10) {
+                    continue;
+                }
 
                 $tag = trim($tag);
 
